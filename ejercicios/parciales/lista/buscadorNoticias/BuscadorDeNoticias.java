@@ -18,7 +18,7 @@ public class BuscadorDeNoticias {
                                         int cantidadMinimaDeCategorias) {
         List<Noticia> noticiasBuscadas = new ArrayList<>();
         for (Noticia noticia : noticias){
-            if (noticia.getCategorias().size() >= cantidadMinimaDeCategorias && tieneCategoriasDeseadas(noticia, conCategorias) && !tieneCategoriasDeseadas(noticia, sinCategorias)){
+            if (noticia.getCategorias().size() >= cantidadMinimaDeCategorias && tieneTodas(noticia, conCategorias) && !tieneAlguna(noticia, sinCategorias)){
                 noticiasBuscadas.add(noticia);
             }
         }
@@ -26,17 +26,23 @@ public class BuscadorDeNoticias {
         return noticiasBuscadas;
     }
 
-    private boolean tieneCategoriasDeseadas(Noticia noticia, List<Categoria> categorias){
-        int cantidadDeCategoriasDeseadas = 0;
+    private boolean tieneTodas(Noticia noticia, List<Categoria> categorias){
         for (Categoria categoria : categorias){
-            if (noticia.getCategorias().contains(categoria)){
-                cantidadDeCategoriasDeseadas++;
+            if (!noticia.getCategorias().contains(categoria)){
+                return false;
             }
         }
 
-        if (cantidadDeCategoriasDeseadas == categorias.size()){
-            return true;
+        return true;
+    }
+
+    private boolean tieneAlguna(Noticia noticia, List<Categoria> categorias){
+        for (Categoria categoria : categorias){
+            if (noticia.getCategorias().contains(categoria)){
+                return true;
+            }
         }
+
         return false;
     }
 }
