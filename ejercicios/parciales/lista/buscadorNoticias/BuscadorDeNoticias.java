@@ -1,5 +1,6 @@
 package parciales.lista.buscadorNoticias;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BuscadorDeNoticias {
@@ -15,7 +16,27 @@ public class BuscadorDeNoticias {
                                         List<Categoria> conCategorias,
                                         List<Categoria> sinCategorias,
                                         int cantidadMinimaDeCategorias) {
-        // TODO
-        return null;
+        List<Noticia> noticiasBuscadas = new ArrayList<>();
+        for (Noticia noticia : noticias){
+            if (noticia.getCategorias().size() >= cantidadMinimaDeCategorias && tieneCategoriasDeseadas(noticia, conCategorias) && !tieneCategoriasDeseadas(noticia, sinCategorias)){
+                noticiasBuscadas.add(noticia);
+            }
+        }
+
+        return noticiasBuscadas;
+    }
+
+    private boolean tieneCategoriasDeseadas(Noticia noticia, List<Categoria> categorias){
+        int cantidadDeCategoriasDeseadas = 0;
+        for (Categoria categoria : categorias){
+            if (noticia.getCategorias().contains(categoria)){
+                cantidadDeCategoriasDeseadas++;
+            }
+        }
+
+        if (cantidadDeCategoriasDeseadas == categorias.size()){
+            return true;
+        }
+        return false;
     }
 }

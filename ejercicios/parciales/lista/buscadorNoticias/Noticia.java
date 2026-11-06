@@ -1,6 +1,7 @@
 package parciales.lista.buscadorNoticias;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Noticia {
     private String titulo;
@@ -12,30 +13,33 @@ public class Noticia {
      *       indicados, sin categorias asociadas.
      */
     public Noticia(String titulo, String cuerpo) {
-        // TODO
+        if (titulo == null || cuerpo == null || titulo.isEmpty() || titulo.isEmpty()){
+            throw new IllegalArgumentException();
+        }
+
+        this.titulo = titulo;
+        this.cuerpo = cuerpo;
+        this.categorias = new ArrayList<>();
     }
 
     /*
      * post: devuelve el título de la noticia.
      */
     public String getTitulo() {
-        // TODO
-        return null;
+        return titulo;
     }
 
     /*
      * post: devuelve el cuerpo de la noticia.
      */
     public String getCuerpo() {
-        // TODO
-        return null;
+        return cuerpo;
     }
 
     /*
      * post: devuelve las categorias asociadas a la noticia.
      */
     public List<Categoria> getCategorias() {
-        // TODO
-        return null;
+        return categorias;
     }
 }
