@@ -13,7 +13,7 @@ public class Noticia {
      *       indicados, sin categorias asociadas.
      */
     public Noticia(String titulo, String cuerpo) {
-        if (titulo == null || cuerpo == null || titulo.isEmpty() || titulo.isEmpty()){
+        if (titulo == null || cuerpo == null || titulo.isEmpty() || cuerpo.isEmpty()){
             throw new IllegalArgumentException();
         }
 
